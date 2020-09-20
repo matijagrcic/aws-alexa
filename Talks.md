@@ -152,6 +152,20 @@ Prompt the user to give consent
 Get the access token (refresh on each request)
 Call Personal Profile API
 
+# Useful links
+
+[http://alexa.design/codegenerator](http://alexa.design/codegenerator)
+
+> ASK-SDK Code Generator for Alexa Skill Language Models
+
+[http://alexa.design/nodesdk](http://alexa.design/nodesdk)
+
+> Alexa Skills Kit SDK for Node.js
+
+[http://alexa.design/guide](http://alexa.design/guide)
+
+> The Alexa Design Guide
+
 # Tool
 
 [Alexa Skills Toolkit for Visual Studio Code](https://github.com/alexa/ask-toolkit-for-vscode)
