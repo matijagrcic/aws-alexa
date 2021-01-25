@@ -169,3 +169,11 @@ Call Personal Profile API
 # Tool
 
 [Alexa Skills Toolkit for Visual Studio Code](https://github.com/alexa/ask-toolkit-for-vscode)
+
+# Zero to Hero: A comprehensive course to building an Alexa Skill
+
+[![Zero to Hero: A comprehensive course to building an Alexa Skill](https://img.youtube.com/vi/CzTKDu7Qgjs/0.jpg)](https://www.youtube.com/watch?v=CzTKDu7Qgjs)
+
+# How to build an engaging Alexa skill
+
+[![How to build an engaging Alexa skill](https://img.youtube.com/vi/b2uIBbJTrX8/0.jpg)](https://www.youtube.com/watch?v=b2uIBbJTrX8)
