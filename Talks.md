@@ -174,6 +174,17 @@ Call Personal Profile API
 
 [![Zero to Hero: A comprehensive course to building an Alexa Skill](https://img.youtube.com/vi/CzTKDu7Qgjs/0.jpg)](https://www.youtube.com/watch?v=CzTKDu7Qgjs)
 
+[Zero to Hero: A comprehensive course to building an Alexa Skill](https://github.com/alexa/skill-sample-nodejs-zero-to-hero)
+
 # How to build an engaging Alexa skill
 
 [![How to build an engaging Alexa skill](https://img.youtube.com/vi/b2uIBbJTrX8/0.jpg)](https://www.youtube.com/watch?v=b2uIBbJTrX8)
+
+
+# Improving Alexa Skill Quality
+
+[![Improving Alexa Skill Quality](https://img.youtube.com/vi/B8NgFP2urMg/0.jpg)](https://www.youtube.com/watch?v=B8NgFP2urMg)
+
+# Integrate the Reminders API with Your Skill to Deepen Customer Engagement
+
+[![Integrate the Reminders API with Your Skill to Deepen Customer Engagement](https://img.youtube.com/vi/eF7R4BEFu5c/0.jpg)](https://www.youtube.com/watch?v=eF7R4BEFu5c)
