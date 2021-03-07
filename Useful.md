@@ -77,3 +77,133 @@
 # Settings API
 
 [Personalize Your Alexa Skill with Customer-Specific Time Zones and Measurements Using the Alexa Settings API](https://developer.amazon.com/blogs/alexa/post/c2ba44fa-4bd8-4b49-925d-29dbc0330b1e/personalize-your-alexa-skill-with-customer-specific-time-zones-and-measurements-using-the-alexa-settings-api)
+
+[Using the Alexa Settings API to Look Up the Device Time Zone](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2019/07/getting-started-with-cake-time-using-the-alexa-settings-api-to-look-up-the-device-time-zone)
+
+[UserVoice](https://alexa.uservoice.com/forums/906892-alexa-skills-developer-voice-and-vote/suggestions/33147373-provide-device-timezone-in-alexa-requests)
+
+# Skill Messaging API
+
+[Skill Messaging API Reference](https://developer.amazon.com/en-US/docs/alexa/smapi/skill-messaging-api-reference.html)
+
+> The Skill Messaging API is used to send message requests to skills.
+
+# Service API
+
+[Calling Alexa Service APIs](https://developer.amazon.com/en-US/docs/alexa/alexa-skills-kit-sdk-for-nodejs/call-alexa-service-apis.html#apiclient)
+
+[Get the user current time from your Alexa Skill](https://medium.com/@cpenarrieta/one-way-to-get-the-user-current-time-from-your-alexa-skill-88b6d2b1aecf)
+
+```js
+const getCurrentDate = async (handlerInput) => {
+  const serviceClientFactory = handlerInput.serviceClientFactory;
+  const deviceId = handlerInput.requestEnvelope.context.System.device.deviceId;
+
+  try {
+    const upsServiceClient = serviceClientFactory.getUpsServiceClient();
+    return (userTimeZone = await upsServiceClient.getSystemTimeZone(deviceId));
+  } catch (error) {
+    if (error.name !== "ServiceError") {
+      return handlerInput.responseBuilder
+        .speak("There was a problem connecting to the service.")
+        .getResponse();
+    }
+    console.log("error", error.message);
+  }
+};
+```
+
+```js
+const skillBuilder = Alexa.SkillBuilders.custom();
+exports.handler = skillBuilder
+	.addRequestHandlers(...)
+    .withApiClient(new Alexa.DefaultApiClient())
+	.withSkillId(...)
+	.lambda();
+```
+
+> When you use `.standard()` Skill Builder instead of the `.custom()` one, you _ don't need to_ include `.withApiClient(new Alexa.DefaultApiClient())`. The Standard includes it by default.
+> [Ref](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/issues/356)
+
+[Device Settings Demo](https://github.com/alexa/alexa-cookbook/blob/master/feature-demos/skill-demo-device-settings/lambda/custom/index.js)
+
+```js
+export const getUnixTimestampForTimeZone = (deviceTimeZone: string) => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  return dayjs().tz(deviceTimeZone).valueOf();
+};
+```
+
+[List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+# Location Services
+
+[Enhance Your Customer Experience with Real-Time Location Services for Alexa Skills](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2018/12/location-services-launch)
+
+[Use Location Services for Alexa Skills](https://developer.amazon.com/en-US/docs/alexa/custom-skills/location-services-for-alexa-skills.html)
+
+> If `context.Geolocation.locationServices.access` is "ENABLED" and `context.Geolocation.locationServices.status` is "RUNNING", then the device is sharing location.
+
+> For stationary devices like the Amazon Echo, Alexa can provide you the device's physical address with the Device Address API. _Stationary devices do not provide geo-coordinate data through location services._
+
+[New Location Services Permissions Inconsistency](https://forums.developer.amazon.com/questions/194325/new-location-services-permissions-inconsistency.html)
+
+```js
+const LOCATION_SERVICES_PERMISSION = ["alexa::devices:all:geolocation:read"];
+
+const [permission] = LOCATION_SERVICES_PERMISSION;
+if (!isPermissionGranted(handlerInput, permission)) {
+  return responseBuilder
+    .speak(
+      "Location Services permission is required to use this feature. Please enable it in the Alexa app."
+    )
+    .withAskForPermissionsConsentCard(LOCATION_SERVICES_PERMISSION)
+    .getResponse();
+}
+
+/**
+ * @param {Object} handlerInput Alexa handlerInput object
+ * @param {String} permission Alexa Skill permission to check for
+ * @returns {Boolean} true if permission is granted. false if it is not
+ * @description checks to see if the desired Skill permission is granted
+ */
+function isPermissionGranted(handlerInput, permission) {
+  const {
+    requestEnvelope: {
+      context: {
+        System: { user },
+      },
+    },
+  } = handlerInput;
+  return (
+    user.permissions &&
+    user.permissions.scopes &&
+    user.permissions.scopes[permission] &&
+    user.permissions.scopes[permission].status === "GRANTED"
+  );
+}
+```
+
+[New Permissions Card for Requesting Customer Consent](https://developer.amazon.com/en-US/docs/alexa/custom-skills/device-address-api.html#permissions-card)
+
+```js
+//determine if the device is capable of supporting location services
+var isGeolocationSupported =
+  context.System.device.supportedInterfaces.Geolocation;
+
+var lat = geo.coordinate.latitudeInDegrees;
+var lng = geo.coordinate.longitudeInDegrees;
+```
+
+[Developing Location-Aware Alexa Skills](https://developer.here.com/blog/developing-location-aware-alexa-skills)
+
+[AMAZON.YesIntent and AMAZON.NoIntent Now Compatible with ASK Dialog Management Features](https://developer.amazon.com/blogs/alexa/post/ea90c23d-42e2-46ee-8a2f-0df749030a3b/amazon-yesintent-and-amazon-nointent-now-compatible-with-ask-dialog-management-features)
+
+[Using Yes/No Intents with Dialog Management](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2018/04/using-yes-no-intents-with-dialog-management)
+
+# Intent Request History API
+
+[Intent Request History API](https://developer.amazon.com/en-US/docs/alexa/smapi/intent-request-history.html)
+
+> Collect all user utterance provided to your skill on a daily basis but your skill must have at least 10 unique users per locale in a day, in order for data to be available for that locale for that day

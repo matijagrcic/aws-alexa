@@ -50,3 +50,7 @@ const SkillDisabledEventHandler = {
         }
       ]
 ```
+
+#
+
+[Slots and Session Attributes in the ASK SDK for Node.js](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2018/06/code-deep-dive-slots-and-session-attributes-in-the-ask-sdk-for-node-js)

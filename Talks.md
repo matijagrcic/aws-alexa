@@ -166,10 +166,6 @@ Call Personal Profile API
 
 > The Alexa Design Guide
 
-# Tool
-
-[Alexa Skills Toolkit for Visual Studio Code](https://github.com/alexa/ask-toolkit-for-vscode)
-
 # Zero to Hero: A comprehensive course to building an Alexa Skill
 
 [![Zero to Hero: A comprehensive course to building an Alexa Skill](https://img.youtube.com/vi/CzTKDu7Qgjs/0.jpg)](https://www.youtube.com/watch?v=CzTKDu7Qgjs)
@@ -180,7 +176,6 @@ Call Personal Profile API
 
 [![How to build an engaging Alexa skill](https://img.youtube.com/vi/b2uIBbJTrX8/0.jpg)](https://www.youtube.com/watch?v=b2uIBbJTrX8)
 
-
 # Improving Alexa Skill Quality
 
 [![Improving Alexa Skill Quality](https://img.youtube.com/vi/B8NgFP2urMg/0.jpg)](https://www.youtube.com/watch?v=B8NgFP2urMg)
@@ -188,3 +183,15 @@ Call Personal Profile API
 # Integrate the Reminders API with Your Skill to Deepen Customer Engagement
 
 [![Integrate the Reminders API with Your Skill to Deepen Customer Engagement](https://img.youtube.com/vi/eF7R4BEFu5c/0.jpg)](https://www.youtube.com/watch?v=eF7R4BEFu5c)
+
+# Adding Smart Home Controls with AVS
+
+[![Adding Smart Home Controls with AVS](https://img.youtube.com/vi/WkgoMm9l0ec/0.jpg)](https://www.youtube.com/watch?v=WkgoMm9l0ec)
+
+# Alexa Location Based Reminder and Routines
+
+[![Alexa Location Based Reminder and Routines](https://img.youtube.com/vi/giYR71kO76s/0.jpg)](https://www.youtube.com/watch?v=giYR71kO76s)
+
+# Create Custom Location-Based Alexa Routines
+
+[![Create Custom Location-Based Alexa Routines](https://img.youtube.com/vi/oeY2lnHQCfE/0.jpg)](https://www.youtube.com/watch?v=oeY2lnHQCfE)
