@@ -48,3 +48,19 @@ npm install --save-dev ask-sdk-local-debug
 > Alexa Skills Toolkit for Visual Studio Code is an extension that makes it easier for you to create, test, and deploy Alexa skills. It provides a dedicated workspace for Alexa Skills in VS Code and provides features for managing and previewing APL documents along with the ability to test and debug your skills in VS Code with local debugging.
 
 [Alexa Skills Toolkit for Visual Studio Code](https://github.com/alexa/ask-toolkit-for-vscode)
+
+# DAZN Lambda Powertools
+
+[DAZN Lambda Powertools](https://github.com/getndazn/dazn-lambda-powertools)
+
+[lambda-powertools-logger](https://www.npmjs.com/package/@dazn/lambda-powertools-logger)
+
+[dazn-lambda-powertools](https://serverlessrepo.aws.amazon.com/applications/us-east-1/570995107280/dazn-lambda-powertools)
+
+# AWS Powertools
+
+> AWS Powertools are based on idea from DAZN Powertools
+
+[AWS Lambda Powertools (Python)](https://github.com/awslabs/aws-lambda-powertools-python)
+
+[AWS Lambda Powertools (Java)](https://github.com/awslabs/aws-lambda-powertools-java)

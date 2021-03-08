@@ -207,3 +207,16 @@ var lng = geo.coordinate.longitudeInDegrees;
 [Intent Request History API](https://developer.amazon.com/en-US/docs/alexa/smapi/intent-request-history.html)
 
 > Collect all user utterance provided to your skill on a daily basis but your skill must have at least 10 unique users per locale in a day, in order for data to be available for that locale for that day
+
+# FallbackIntent
+
+> AMAZON.FallbackIntent in the Alexa Skills Kit (ASK) built-in library helps you handle unexpected utterances, or when a customer says something that doesn’t map to any intents in your skill
+> aka “out-of-domain requests.”
+
+[The Built-In FallbackIntent, PhoneNumber Slot (Beta), and Ordinal Slot (Beta) Get Expanded Locale Support](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2019/11/handle-unexpected-user-requests-with-FallbackIntent-phonenumber-ordinal-built-in-slots-expanded)
+
+> There is no way to capture the utterance that triggered the FallbackIntent.
+
+[Use the New Fallback Intent to Respond Gracefully to Unexpected Customer Requests](https://developer.amazon.com/blogs/alexa/post/c97f3bb7-9701-41e8-ac06-a3a44b9f1638/use-the-new-fallback-intent-to-respond-gracefully-to-unexpected-customer-requests)
+
+[Code First Alexa Skill Development With VS Code and the ASK SDK Controls Framework](https://dzone.com/articles/code-first-alexa-skill-development-with-vs-code-an)
