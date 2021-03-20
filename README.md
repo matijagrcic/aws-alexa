@@ -27,3 +27,7 @@
 # Beta Testing
 
 [Skill Beta Testing for Alexa Skills](https://developer.amazon.com/en-US/docs/alexa/custom-skills/skills-beta-testing-for-alexa-skills.html#h2_create-test-for-skill)
+
+> If you remove a tester, that tester will receive an email that the test has ended, although the test does continue for all of the remaining testers. If the skill has both a live version and a development version, then a tester who has been removed will resume having access to the live version
+
+> When you have a skill that is live, you can still create a beta version of this skill. The testers who have access to the beta version will not have access to the live version. A tester may request removal from a beta test, and then after removal, this tester can re-enable the live skill in the Alexa app.

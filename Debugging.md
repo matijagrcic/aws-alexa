@@ -64,3 +64,108 @@ npm install --save-dev ask-sdk-local-debug
 [AWS Lambda Powertools (Python)](https://github.com/awslabs/aws-lambda-powertools-python)
 
 [AWS Lambda Powertools (Java)](https://github.com/awslabs/aws-lambda-powertools-java)
+
+[How to Monitor Custom Alexa Skills Using Amazon CloudWatch Alarms](https://developer.amazon.com/blogs/alexa/post/99fb071e-9aaf-481b-b9af-0186c0f712a5/how-to-monitor-custom-alexa-skills-using-amazon-cloudwatch-alarms)
+
+> In case of errors with a skill request, the skill receives a `SessionEndedRequest` that contains the error message and error type. You can log this error information to identify the cause of errors with their skill.
+
+[How to Debug Errors for Custom Alexa Skills](https://developer.amazon.com/blogs/alexa/post/a8b8b146-0e62-44da-ba8e-63b411d8f4c6/how-to-debug-errors-for-custom-alexa-skills)
+
+```js
+const SessionEndedRequestHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === "SessionEndedRequest";
+  },
+  handle(handlerInput) {
+    if (null != handlerInput.requestEnvelope.request.error) {
+      console.log(JSON.stringify(handlerInput.requestEnvelope.request.error));
+    }
+
+    return handlerInput.responseBuilder.getResponse();
+  },
+};
+```
+
+[Handle Requests Sent by Alexa](https://developer.amazon.com/en-US/docs/alexa/custom-skills/handle-requests-sent-by-alexa.html)
+
+> If you host your skill with AWS Lambda, you can provide your skill ID as part of the Alexa Skills Kit trigger. This adds a verification check before your function is ever invoked, so unverified skills cannot invoke your function. In this case, you do not need to check the skill ID in your code.
+
+```js
+//code rejects any requests where the skill ID does not match "amzn1.ask.skill.1"
+const skillBuilder = Alexa.SkillBuilders.custom();
+
+exports.handler = skillBuilder
+  .withSkillId("amzn1.ask.skill.1")
+  .addRequestHandlers(
+    HelloWorldIntentHandler,
+    LaunchRequestHandler,
+    HelpIntentHandler,
+    CancelAndStopIntentHandler,
+    SessionEndedRequestHandler
+  )
+  .addErrorHandlers(ErrorHandler)
+  .addRequestInterceptors(LoggingRequestInterceptor)
+  .addResponseInterceptors(LoggingResponseInterceptor)
+  .lambda();
+```
+
+[SessionEndedRequest](https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-types-reference.html#sessionendedrequest)
+
+- The user says "exit" or "quit".
+- The user does not respond or says something that does not match an intent defined in your voice interface while the device is listening for the user's response.
+- An error occurs.
+
+> The Skill Management API (SMAPI) also allows developers to test their live skills programmatically using the `Simulation API `and `Invocation API `that help create automated tests that can identify bugs and regressions. You can perform end-to-end testing with these APIs to ensure that your skill is functioning as expected.
+
+[What’s New with Request and Response Interceptors in the Alexa Skills Kit SDK for Node.js](https://developer.amazon.com/blogs/alexa/post/0e2015e1-8be3-4513-94cb-da000c2c9db0/what-s-new-with-request-and-response-interceptors-in-the-alexa-skills-kit-sdk-for-node-js)
+
+> _Request interceptors_ are invoked immediately before the execution of the selected handler for an incoming request. You can use them to add any logic that needs to be performed for each request, irrespective of the type of request.
+
+_Response interceptors_ are invoked immediately after execution of the selected request handler. Because response interceptors have access to the output generated from execution of the request handler, they are ideal for tasks such as response sanitization, internationalization, and validation.
+
+```js
+const LocalizationInterceptor = {
+  process(handlerInput) {
+    const localizationClient = i18n.use(sprintf).init({
+      lng: handlerInput.requestEnvelope.request.locale,
+
+      overloadTranslationOptionHandler:
+        sprintf.overloadTranslationOptionHandler,
+
+      resources: languageStrings,
+
+      returnObjects: true,
+    });
+
+    const attributes = handlerInput.attributesManager.getRequestAttributes();
+
+    attributes.t = function (...args) {
+      return localizationClient.t(...args);
+    };
+  },
+};
+```
+
+```js
+.addRequestInterceptors(LocalizationInterceptor)
+    .addErrorHandlers(ErrorHandler)
+    .lambda();
+```
+
+# Skill Simulation API
+
+[Skill Simulation API](https://developer.amazon.com/en-US/docs/alexa/smapi/skill-simulation-api.html)
+
+> The Skill Simulation API enables skill developers to simulate skill execution. You can test your skill and see the intent that a simulated device returns from your interaction model. In the API, the Intent Debugging returns the consideredIntents returned in the JSON response and shows the intents that were considered and discarded.
+
+# Skill Invocation API
+
+[Skill Invocation API](https://developer.amazon.com/en-US/docs/alexa/smapi/skill-invocation-api.html)
+
+> The Skill Invocation API invokes the AWS Lambda or third-party HTTPS endpoint for a specified skill.
+
+> This API is only available for custom skills.
+
+```
+
+```

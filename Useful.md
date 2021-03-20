@@ -4,6 +4,8 @@
 
 # Account Linking
 
+> Your system must support OAuth 2.0 and the authorization code grant type.
+
 [Understand Account Linking for Alexa Skills](https://developer.amazon.com/en-US/docs/alexa/account-linking/understand-account-linking.html)
 
 [How to Set Up Alexa Account Linking with Amazon Cognito User Pools to Create a Personalized Customer Experience](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2019/11/how-to-set-up-alexa-account-linking-with-amazon-cognito-user-pools-to-create-a-personalized-customer-experience)
@@ -185,6 +187,8 @@ function isPermissionGranted(handlerInput, permission) {
 }
 ```
 
+[Location-aware Alexa Skills with HERE Location Services](https://developer.here.com/tutorials/alexa-hls/)
+
 [New Permissions Card for Requesting Customer Consent](https://developer.amazon.com/en-US/docs/alexa/custom-skills/device-address-api.html#permissions-card)
 
 ```js
@@ -220,3 +224,30 @@ var lng = geo.coordinate.longitudeInDegrees;
 [Use the New Fallback Intent to Respond Gracefully to Unexpected Customer Requests](https://developer.amazon.com/blogs/alexa/post/c97f3bb7-9701-41e8-ac06-a3a44b9f1638/use-the-new-fallback-intent-to-respond-gracefully-to-unexpected-customer-requests)
 
 [Code First Alexa Skill Development With VS Code and the ASK SDK Controls Framework](https://dzone.com/articles/code-first-alexa-skill-development-with-vs-code-an)
+
+[5 Common Error Messages for Custom Alexa Skills and How to Troubleshoot Them](https://developer.amazon.com/blogs/alexa/post/0d8c5234-3c7a-4b77-9906-b43a5310bde4/5-common-error-messages-for-custom-alexa-skills-and-how-to-troubleshoot-them)
+
+Alexa: "There was a problem with the requested skill's response." - response JSON your skill sent back was malformed  
+Alexa: "Unable to reach the requested skill" - Alexa is unable to hit your endpoint
+
+[Lambda functions and custom skills](https://developer.amazon.com/en-US/docs/alexa/custom-skills/host-a-custom-skill-as-an-aws-lambda-function.html#about-lambda-functions-and-custom-skills)
+
+> You do not need to verify that requests are coming from the Alexa service yourself. Access to execute your function is controlled by permissions within AWS instead.
+
+> It is recommended that you also enable skill ID verification for the function and provide the skill ID (also called the application ID) for your skill. This means your function can be invoked only if the skill ID in the Alexa Skills Kit request matches the skill ID configured in the trigger.When using skill ID verification, you do not need to include code to verify that the request is intended for your service. Requests from unverified skills do not invoke your function.
+
+[Progressive Response](https://developer.amazon.com/en-US/docs/alexa/custom-skills/send-the-user-a-progressive-response.html)
+
+> Progressive response is interstitial SSML content (including text-to-speech and short audio) that Alexa plays while waiting for your full skill response.
+
+# Extend a Built-in Intent with Sample Utterances
+
+[Extend a Built-in Intent with Sample Utterances](https://developer.amazon.com/en-US/docs/alexa/custom-skills/implement-the-built-in-intents.html#extending)
+
+> You can extend the standard built-in intents by providing additional sample utterances. This is useful for invoking the intents with skill-specific utterances.
+
+> You cannot extend any of the other built-in intents, such as WeatherForecast or LocalBusiness.
+
+[Available standard built-in intents for Alexa-enabled devices with a screen](https://developer.amazon.com/en-US/docs/alexa/custom-skills/standard-built-in-intents.html#built-in-intents-echo-show)
+
+[AWS Certified Alexa Skill Builder – Specialty (AXS-C01) Exam Learning Path](https://jayendrapatil.com/aws-certified-alexa-skill-builder-specialty-axs-c01-exam-learning-path/)

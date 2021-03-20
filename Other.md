@@ -52,3 +52,5 @@ wordSlots.forEach((word) => {
 [Remove the requirement for a leading phrase with AMAZON.SearchQuery](https://alexa.uservoice.com/forums/906892-alexa-skills-developer-voice-and-vote/suggestions/34248877-remove-the-requirement-for-a-leading-phrase-with-a)
 
 > Make sure that your skill uses no more than one `AMAZON.SearchQuery` slot per intent. The `Amazon.SearchQuery` slot type cannot be combined with another intent slot in sample utterances.
+
+[AMAZON.SearchQuery Reference](https://developer.amazon.com/docs/custom-skills/slot-type-reference.html#amazonsearchquery)
