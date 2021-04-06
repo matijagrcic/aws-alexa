@@ -166,6 +166,4 @@ const LocalizationInterceptor = {
 
 > This API is only available for custom skills.
 
-```
-
-```
+[3 Tips to Troubleshoot Your Custom Alexa Skill's Back End](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2019/04/3-tips-to-troubleshoot-your-custom-alexa-skill-s-back-end)

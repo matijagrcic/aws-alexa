@@ -16,6 +16,13 @@
 
 [AWS SDK for JavaScript CognitoIdentityProvider](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cognito-identity-provider/index.html)
 
+[Validate and Use Access Tokens in Custom Skill Code](https://developer.amazon.com/en-US/docs/alexa/account-linking/add-account-linking-logic-custom-skill.html#validate-token)
+
+For a request that requires authentication, your code should do at least two checks:
+
+- Verify that the accessToken exists.
+- Verify that the token represents a valid user in your resource server.
+
 # Reminders API
 
 [Remind Customers of Important Tasks or Events with the Reminders API](https://developer.amazon.com/blogs/alexa/post/e65a0e17-2716-4714-8d02-a50210fdd494/now-available-enable-reminders-for-your-skills-with-alexa-reminders-api)
@@ -83,6 +90,8 @@
 [Using the Alexa Settings API to Look Up the Device Time Zone](https://developer.amazon.com/en-US/blogs/alexa/alexa-skills-kit/2019/07/getting-started-with-cake-time-using-the-alexa-settings-api-to-look-up-the-device-time-zone)
 
 [UserVoice](https://alexa.uservoice.com/forums/906892-alexa-skills-developer-voice-and-vote/suggestions/33147373-provide-device-timezone-in-alexa-requests)
+
+[Obtain Customer Settings Information with the Alexa Settings API](https://developer.amazon.com/en-US/docs/alexa/smapi/alexa-settings-api-reference.html)
 
 # Skill Messaging API
 
@@ -251,3 +260,13 @@ Alexa: "Unable to reach the requested skill" - Alexa is unable to hit your endpo
 [Available standard built-in intents for Alexa-enabled devices with a screen](https://developer.amazon.com/en-US/docs/alexa/custom-skills/standard-built-in-intents.html#built-in-intents-echo-show)
 
 [AWS Certified Alexa Skill Builder – Specialty (AXS-C01) Exam Learning Path](https://jayendrapatil.com/aws-certified-alexa-skill-builder-specialty-axs-c01-exam-learning-path/)
+
+# Request and Response JSON Reference
+
+[Request and Response JSON Reference](https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-and-response-json-reference.html)
+
+[Request Types Reference (LaunchRequest, CanFulfillIntentRequest, IntentRequest, SessionEndedRequest)](https://developer.amazon.com/en-US/docs/alexa/custom-skills/request-types-reference.html)
+
+# Delegate the Dialog to Alexa
+
+[Delegate the Dialog to Alexa](https://developer.amazon.com/en-US/docs/alexa/custom-skills/delegate-dialog-to-alexa.html)

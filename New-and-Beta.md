@@ -11,3 +11,5 @@
 # Alexa Conversations
 
 [About Alexa Conversations](https://developer.amazon.com/en-US/docs/alexa/conversations/about-alexa-conversations.html)
+
+[Building Conversational Alexa Skills: Confirming Slots with Dialog Management](https://developer.amazon.com/blogs/alexa/post/efd1fd50-84fe-4e48-97e2-a61ad0612bc3/building-conversational-alexa-skills-confirming-slots-with-dialog-management)
