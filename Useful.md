@@ -23,6 +23,48 @@ For a request that requires authentication, your code should do at least two che
 - Verify that the accessToken exists.
 - Verify that the token represents a valid user in your resource server.
 
+```js
+exports.handler = async (event, context) => {
+  let date = new Date();
+
+  const tableName = process.env.TableName;
+  const region = process.env.Region;
+
+  console.log(`Table: ${tableName} Region: ${region}`);
+
+  AWS.config.update({ region: "REGION" });
+
+  // If the required parameters are present, proceed
+  if (event.request.userAttributes.sub) {
+    let ddbParams = {
+      TableName: tableName,
+      Item: {
+        id: { S: event.request.userAttributes.sub },
+        UserEmail: { S: event.request.userAttributes.email },
+        given_name: { S: event.request.userAttributes.given_name },
+        family_name: { S: event.request.userAttributes.family_name },
+        address: { S: event.request.userAttributes.address },
+        phone_number: { S: event.request.userAttributes.address },
+        createdAt: { S: date.toISOString() },
+      },
+    };
+
+    // Call DynamoDB
+    try {
+      await ddb.putItem(ddbParams).promise();
+      console.log("Success");
+    } catch (err) {
+      console.log("Error", err);
+    }
+    console.log("Success: Everything executed correctly");
+    context.done(null, event);
+  } else {
+    // Nothing to do, the user's email ID is unknown
+    context.done(null, event);
+  }
+};
+```
+
 # Reminders API
 
 [Remind Customers of Important Tasks or Events with the Reminders API](https://developer.amazon.com/blogs/alexa/post/e65a0e17-2716-4714-8d02-a50210fdd494/now-available-enable-reminders-for-your-skills-with-alexa-reminders-api)
@@ -60,6 +102,133 @@ For a request that requires authentication, your code should do at least two che
 [How to Send Media Event Notifications to Your Alexa Skill Customers with the ProactiveEvents API](https://developer.amazon.com/blogs/alexa/post/bbf23596-766a-4e7c-8d74-cbfc234b6791/how-to-send-media-event-notifications-to-your-alexa-skill-customers)
 
 [Proactive Events API](https://www.jovo.tech/docs/v2/amazon-alexa/proactive-events)
+
+```js
+import got from "got";
+import {
+  AlexaClientId,
+  AlexaClientSecret,
+  AlexaUserId,
+  proactiveEventsApi,
+} from "./config";
+
+function getMediaContentAvailableSchema(userId: string, message: string) {
+  let timestamp = new Date();
+  let expiryTime = new Date();
+  expiryTime.setMinutes(expiryTime.getMinutes() + 60);
+
+  let referenceId = `ReferenceIdPairing-${new Date().getTime()}`;
+
+  const mediaContentJson = {
+    timestamp: timestamp.toISOString(),
+    referenceId: referenceId,
+    expiryTime: expiryTime.toISOString(),
+    event: {
+      name: "AMAZON.MediaContent.Available",
+      payload: {
+        availability: {
+          startTime: timestamp,
+          provider: {
+            name: "localizedattribute:providerName",
+          },
+          method: "RELEASE",
+        },
+        content: {
+          name: "localizedattribute:contentName",
+          contentType: "GAME",
+        },
+      },
+    },
+    localizedAttributes: [
+      {
+        locale: "en-GB",
+        providerName: "Provider Name",
+        contentName: message,
+      },
+    ],
+    relevantAudience: {
+      type: "Unicast",
+      payload: {
+        user: userId,
+      },
+    },
+  };
+
+  return mediaContentJson;
+}
+
+const getToken = async () => {
+  try {
+    const response = await got.post("https://api.amazon.com/auth/o2/token", {
+      json: true,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: {
+        grant_type: "client_credentials",
+        client_id: AlexaClientId,
+        client_secret: AlexaClientSecret,
+        scope: "alexa::proactive_events",
+      },
+      form: true,
+    });
+
+    // {
+    //     access_token: 'Atc|XXXXXXXXXXXXXXXXXXXXXXXXX',
+    //     scope: 'alexa::proactive_events',
+    //     token_type: 'bearer',
+    //     expires_in: 3600
+    // }
+    const tokenRequestId = response.headers["x-amzn-requestid"];
+    console.log(`Token requestId: ${tokenRequestId}`);
+    const accessToken = response.body.access_token;
+    console.log(`accessToken: ${accessToken}`);
+
+    return accessToken;
+  } catch (error) {
+    return error.response.body;
+  }
+};
+
+const sendEvent = async (token: string, userId: string, message: string) => {
+  try {
+    const response = await got.post(
+      proactiveEventsApi.development.northAmerica.url,
+      {
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: getMediaContentAvailableSchema(userId, message),
+      }
+    );
+
+    if ([200, 202].includes(response.statusCode)) {
+      console.log("successfully sent event");
+      console.log(`requestId: ${response.headers["x-amzn-requestid"]}`);
+    } else {
+      console.log(`Error https response: ${response.statusCode}`);
+      console.log(`requestId: ${response.headers["x-amzn-requestid"]}`);
+
+      if ([403].includes(response.statusCode)) {
+        console.log(`userId ${userId} may not have subscribed to this event.`);
+      }
+    }
+  } catch (error) {
+    return error.response.body;
+  }
+};
+
+async function notify(userId: string, message: string) {
+  const token = await getToken();
+  const status = await sendEvent(token, userId, message);
+
+  return status;
+}
+
+notify(AlexaUserId, "Your device has been paired").then((p) => console.log(p));
+```
 
 ## Things to check
 
